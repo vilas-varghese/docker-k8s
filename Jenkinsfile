@@ -1,7 +1,7 @@
 pipeline {  
     agent any  
     
-    stages {  
+    //stages {  
         /*
 		Jenkinsfile is coming from this gitrepo. Hence below step not required.
 		stage ('Git-Checkout') {  
@@ -11,7 +11,7 @@ pipeline {
                 echo "Checkout successful";
             } 
         }*/
-        stage ('Compile') {  
+       // stage ('Compile') {  
             steps{
                 //bat label: '', script: 'mvn compile'
                 sh 'mvn compile'
