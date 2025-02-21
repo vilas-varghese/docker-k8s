@@ -1,10 +1,17 @@
 FROM ubuntu:latest
-RUN apt-get -y update && apt-get -y upgrade
-RUN apt-get -y install openjdk-8-jdk wget
+
+# Install dependencies
+RUN apt-get update && apt-get -y install openjdk-8-jdk wget
+
+# Create Tomcat directory
 RUN mkdir /usr/local/tomcat
-RUN wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.97/bin/apache-tomcat-9.0.97.tar.gz -O /tmp/tomcat.tar.gz
+
+# Download latest Tomcat (replace with latest version)
+RUN wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.83/bin/apache-tomcat-9.0.83.tar.gz -O /tmp/tomcat.tar.gz
+
+# Extract Tomcat
 RUN cd /tmp && tar xvfz tomcat.tar.gz
-RUN cp -Rv /tmp/apache-tomcat-9.0.97/* /usr/local/tomcat/
-COPY target/HelloWorld-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/
-EXPOSE 8080
-CMD /usr/local/tomcat/bin/catalina.sh run
+
+# Move extracted files to Tomcat directory
+RUN cp -Rv /tmp/apache-tomcat-9.0.83/* /usr/local/tomcat/
+
